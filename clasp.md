@@ -1,4 +1,4 @@
-@import "/css/primer.css"
+<!-- "/css/primer.css" -->
 
 <!--
 GitHubのMarkdown用のcssをぶっこ抜こう：https://qiita.com/__mick/items/c80fab6c185a41882880
@@ -8,6 +8,8 @@ MPEコードブロック活用法：https://github.com/shd101wyy/markdown-previe
 -->
 
 # Clasp 備忘録
+
+---
 
 ## 目次
 
@@ -20,16 +22,21 @@ MPEコードブロック活用法：https://github.com/shd101wyy/markdown-previe
     - [title オプション](#title-オプション)
     - [rootDir オプション](#rootdir-オプション)
     - [parentId オプション](#parentid-オプション)
+  - [プロジェクト作成例](#プロジェクト作成例)
+    - [Clasp + TypeScript + Jest を用いたスプレッドシートプロジェクト](#clasp--typescript--jest-を用いたスプレッドシートプロジェクト)
+      - [開発手順](#開発手順)
 
 ---
 
 Claspの公式サイト：https://github.com/google/clasp
 
+---
+
 ## インストール
 
 `npm`を利用する。
 
-```
+```txt
 npm install -g @google/clasp
 ```
 
@@ -38,13 +45,12 @@ googleのリポジトリにあるため、`@google`を頭に付ける。
 
 またインストール実行後は、Claspのインストールができているかチェックをする。
 
-```
-clasp -version
-clasp -v // Versionオプションのエイリアス
+```txt
+clasp -version  // バージョン確認
+clasp -v        // オプションのエイリアス
 ```
 
-*＜実行例＞*
-
+`実行例`
 ![](./img/clasp/check_version.png)
 
 [目次へ戻る↑](#目次)
@@ -55,7 +61,7 @@ clasp -v // Versionオプションのエイリアス
 
 インストール完了後に`login`を行い、Googleアカウントへのログインならびに権限の承認を行う。
 
-```
+```txt
 clasp login
 ```
 
@@ -78,18 +84,16 @@ clasp login
 ## プロジェクト作成
 
 Claspから新規のGASプロジェクトを作成する方法。
+下記が`clasp create`コマンドでサポートされているオプションとなる。
 
-`コマンドプロンプト`
-```txt
-clasp create-script --type <project type> --title <title> --rootDir <dir name> --parentId <id>
-clasp create --type <project type> --title <title> --rootDir <dir name> --parentId <id>
-```
+`clasp create-script　[--type <project type>]　[--title <title>]　[--rootDir <dir name>]　[--parentId <id>]`
+`clasp create　[--type <project type>]　[--title <title>]　[--rootDir <dir name>]　[--parentId <id>]`
 
 ### type オプション
 
 プロジェクトの種類を指定する。指定しなければ`standalone`でプロジェクトが作成される。
 
-*プロジェクトの種別*
+> プロジェクトの種別
 
 - `standalone`</br>&emsp;単体のGASプロジェクトを作成する。
 - `docs`</br>&emsp;Google Document(文書)ファイルをコンテナとしたGASプロジェクトを作成する。
@@ -99,7 +103,8 @@ clasp create --type <project type> --title <title> --rootDir <dir name> --parent
 - `webapp`</br>&emsp;WebアプリケーションのGASプロジェクトを作成する。
 - `api`</br>&emsp;APIのGASプロジェクトを作成する。
 
-`例示`
+> cmd
+
 ```txt
 clasp create --type standalone  // スタンドアロンプロジェクトの作成。
 clasp create --type sheets      // スプレッドシート内臓のGASプロジェクト作成。
@@ -110,23 +115,26 @@ clasp create --type sheets      // スプレッドシート内臓のGASプロジ
 プロジェクトの名前を指定する。指定しなければ作成したディレクトリの名前がドライブに上げられる。
 もし、プロジェクトを作成したディレクトリの名前が`Test`であれば、下記の例のようになる。
 
-`コマンドプロンプト`
-```
+> cmd
+
+```txt
 clasp create
 ```
 
 `Google Drive`
-![](./img/clasp/drive_Test_clasp-create.png)
+![--tieleオプションのテスト](./img/clasp/drive_Test_clasp-create.png)
 
 さらに`SheetTest`でプロジェクトを作成した場合
 
-`コマンドプロンプト`
-```
+> cmd
+
+```txt
 clasp create --title "TestScript"
 ```
 
 `Google Drive`
-![](./img/clasp/drive_TestScript_clasp-create--title-TestScript.png)
+
+![--titleオプションTypeScript](./img/clasp/drive_TestScript_clasp-create--title-TestScript.png)
 
 ### rootDir オプション
 
@@ -134,7 +142,8 @@ clasp create --title "TestScript"
 一般的にはそのままデプロイする場合は`dist`ディレクトリを作成し、そこにファイルを置く。
 `TypeScript`などでビルドする場合は、`src`ディレクトリを作成してファイルを置く。
 
-`コマンドプロンプト`
+> cmd
+
 ```txt
 mkdir dist  // "dist"ディレクトリを生成
 clasp create --type sheet --rootDir ./dist
@@ -142,7 +151,8 @@ clasp create --type sheet --rootDir ./dist
 
 `--rootDir`を指定することにより、指定したディレクトリの内部へ`appscript.json`が埋め込まれる。
 
-`ディレクトリ構成`
+> ディレクトリ構成
+
 ```txt
 Test
 ├ dist
@@ -152,7 +162,8 @@ Test
 
 `--rootDir`を指定しない場合。
 
-`ディレクトリ構成`
+> ディレクトリ構成
+
 ```txt
 Test
 ├ .clasp.json
@@ -163,9 +174,10 @@ Test
   
 `--parentId`ドライブ内の親となるフォルダのIDを指定する。
 指定しないとドライブの直下へ作成される。
-先においておくべきフォルダが決まっている場合に利用することが想定される。
+先に置いておくべきフォルダが決まっている場合に利用することが想定される。
 
-`コマンドプロンプト`
+> コマンドプロンプト
+
 ```txt
 clasp create --parentId "1QBhVTPluB6KSb9MURtSjMe2cFQ1JxPu_"
 ```
@@ -178,7 +190,99 @@ clasp create --parentId "1QBhVTPluB6KSb9MURtSjMe2cFQ1JxPu_"
 
 ![](./img/clasp/drive_TestFile_clasp-create--parentId-1QBhVTPluB6KSb9MURtSjMe2cFQ1JxPu_.png)
 
-`.clasp.json`
+---
+
+## プロジェクト作成例
+
+下記にClaspを用いたGASプロジェクトの参考例を提示する。
+
+### Clasp + TypeScript + Jest を用いたスプレッドシートプロジェクト
+
+- `Clasp`</br>&emsp;GASプロジェクトのローカル開発用CLIツール
+- `TypeScript`</br>&emsp;静的型付けによる型安全性を重視したJavaScript用の専用言語
+- `Jest`</br>&emsp;JavaScript用テストツール
+
+#### 開発手順
+
+まず任意の開発用ディレクトリを作成する
+
+```txt
+mkdir gas-project-ts-jest   // ここでは"gas-project-ts-jest"というディレクトリを作成
+```
+
+作成したディレクトリへ移動する
+
+```txt
+cd gas-project-ts-jest
+```
+
+Gitを初期化する
+
+```txt
+git init
+```
+
+ドキュメントとなる`README.md`(説明書のようなもの)を作成。
+
+```txt
+type nul > README.md
+```
+
+npmを初期化する
+
+```txt
+npm init -y   // 通常このコマンドの後は対話形式になるが、全てスキップするために"-y"をつける。
+```
+
+各種パッケージのインストール
+
+- TypeScriptのインストール
+
+  ```txt
+  npm install -D typescript   // "-D"オプションは開発環境のみの利用で稼働環境へのデプロイを行わないときに使用する。
+  ```
+
+- Jestのインストール
+  - jest
+  - @types/jest
+  - @swc/core
+  - @swc/jest
+
+  ```txt
+  npm install -D jest @types/jest @swc/core @swc/jest
+  ```
+
+- GASの型定義ファイルのインストール
+
+  ```txt
+  npm install -D @types/google-apps-script
+  ```
+
+`tsconfig.json`の生成
+
+```txt
+npx tsc -init
+```
+
+> tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "lib": ["ESNext"],
+    "experimentalDecorators": true    
+  }
+}
+```
+
+
+
+> .clasp.json
+
 ```json
 {
   "timeZone": "America/New_York",
@@ -189,7 +293,7 @@ clasp create --parentId "1QBhVTPluB6KSb9MURtSjMe2cFQ1JxPu_"
 }
 ```
 
-`appscript.json`
+> appscript.json
 
 ```json
 {

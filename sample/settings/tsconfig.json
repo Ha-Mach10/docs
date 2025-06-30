@@ -1,0 +1,40 @@
+// tsconfitのtarget, libを理解する
+// https://zenn.dev/mitsuyoshi/articles/3bb19923585091
+
+// ViteでTypeScript x Reactの開発環境を構築してみた(前編/後編)
+// 前 : https://note.shiftinc.jp/n/n9c5fcd207680
+// 後 : https://note.shiftinc.jp/n/n728b559e5097
+
+// CommonJsとES*の違いについて
+//　https://zenn.dev/enginia_vita/articles/18bc00866d3fda
+
+// TypeScript4.5以降で追加されたTSConfigのオプションを調べてみた
+// https://t-yng.jp/post/typescript-tsconfig-options-over-4.5
+
+// isolatedModules(サバイバルTypeScript)
+// https://typescriptbook.jp/reference/tsconfig/isolatedModules
+
+{
+    "compilerOptions": {
+        "target": "ES2023",
+        "useDefineForClassFields": true,    // ES2022以降は"true", それ以下は"false"。
+        "lib": ["ES2024", "DOM"],           // targetのjsバージョンに搭載されていない機能を利用する際に必要。
+        "module": "ESNext",                 // 
+        "skipLibCheck": true,               // *.d.tsで定義された型をチェックするか否か。false静的型チェックが働かなくなる（コードが増えたときに有用）
+
+        /* Bundler mode */
+        "moduleResolution": "Bundler",      // 現在はBundlerが存在するため、意味はないが、Node16, NodeNextが存在する注）Nodeは使用しない方が良い
+        "allowArbitraryExtensions": true,   // *.jsや*.tsなどの標準外のファイル拡張子をインポートできる。ただしバンドラが非標準のファイルを扱えるかを確認しなければならない。
+        "resolveJsonModule": true,          // JSONファイルの型検証をサポートするか否か."true"サポートする。"false"サポートしない。
+        "isolatedModules": true,            // トランスパイラ向けのオプション。コンパイラが正しく解釈できないコードについてチェックする。
+        "noEmit": true,                     // Babelやswcなどのトランスパイラへ処理を任せるようにする。TypeScript自身がJavaScriptへのコンパイルをしなくなる。
+        
+        /* linting */
+        "strict": true,                     // より厳密な型チェックを行う
+        "noUnusedLocals": true,             // 宣言したにもかかわらず、使用されていない変数の使用を禁止する。
+        "noUnusedParameters": true,         // 使用されていない引数を禁止する。
+        "noFallthroughCasesInSwitch": true  // switch case文のフォールスルーを禁止する。
+    },
+    "include": ["src"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}
