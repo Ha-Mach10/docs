@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "composite": true,                    // 他のtsconfig.jsonによってreferenceされている場合、これをtrueにする。
+    "skipLibCheck": true,                 // 型チェックのスルー
+    "module": "ESNext",                   // 基本、"ESNext"か"CommonJs"、他には"none","amd","system","umd","es6","ex2015"などがある
+    "moduleResolution": "Bundler",        // モジュールの解決を行うツールを指定する。
+    "allowSyntheticDefaultImports": true  // 合成デフォルトインポートを許可する。
+  },
+  "include": ["vite.config.ts"]           // コンパイル対象のパス
+}

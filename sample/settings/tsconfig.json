@@ -14,6 +14,9 @@
 // isolatedModules(サバイバルTypeScript)
 // https://typescriptbook.jp/reference/tsconfig/isolatedModules
 
+// モジュール(サバイバルTypeScript)
+// https://typescriptbook.jp/reference/modules
+
 {
     "compilerOptions": {
         "target": "ES2023",
@@ -35,6 +38,6 @@
         "noUnusedParameters": true,         // 使用されていない引数を禁止する。
         "noFallthroughCasesInSwitch": true  // switch case文のフォールスルーを禁止する。
     },
-    "include": ["src"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": ["src"],                                     // コンパイル対象のパス
+    "references": [{ "path": "./tsconfig.node.json" }]      // 
 }

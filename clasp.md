@@ -5,6 +5,7 @@ GitHubのMarkdown用のcssをぶっこ抜こう：https://qiita.com/__mick/items
 Markdownでスタイルシート：https://qiita.com/skkzsh/items/99e30bbbfe69f379b583
 マークダウンのコードブロックにファイル名を表示：https://geniusium.hatenablog.com/entry/2022/09/03/230551
 MPEコードブロック活用法：https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/ja-jp/code-chunk.md
+Vue + Clasp + TypeScript：https://qiita.com/take_me/items/019478780932fde12144
 -->
 
 # Clasp 備忘録
