@@ -19,7 +19,7 @@ Invoke-WebRequest -Uri $InstallerUrl -OutFile $InstallerPath
 
 # Unblock the installer
 # インストーラのブロックを解除
-Unblock-File -Patj $InstallerPath
+Unblock-File -Path $InstallerPath
 
 # Execute the installer silently
 # インストーラをサイレントモードで実行
