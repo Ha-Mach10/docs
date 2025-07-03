@@ -90,5 +90,3 @@ C:\Users\matsumura\AppData\Local\Microsoft\WindowsApps\python.exe
 ```
 
 **これでおｋ🎉**
-
----

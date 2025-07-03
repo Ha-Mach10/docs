@@ -32,36 +32,35 @@ Qiita(VSCode Markdown拡張): https://qiita.com/ryokat3/items/fe61d9234be2e147cb
 
 ### 最初にやること
 
-&emsp; 最初に開発環境の整備を行う。</br>
-&emsp; 開発に最低限必要なものは下記の通り。
+最初に開発環境の整備を行う。
+開発に最低限必要なものは下記の通り。
 
 > ---
 
 * ### **Node.js**</br>
 
-  JavaScriptを動かすための汎用ランタイム。</br>
-  GoogleのV8ランタイムエンジンを搭載している。</br>
+  JavaScriptを動かすための汎用ランタイム。
+  GoogleのV8ランタイムエンジンを搭載している。
   ![](./_ico/nodejsLight.svg)</br>
   [公式サイト](https://nodejs.org/ja "Nodejs")&nbsp;|&nbsp;[ロゴリンク](https://nodejs.org/ja/about/branding "Nodejs")&nbsp;|&nbsp;[GitHub](https://github.com/nodejs/node "GitHub")
 
 * ### **TypeScript**</br>
 
-  JavaScriptは動的型付け言語であるため、意図しない型を許容しないように</br>
-  静的型付けを行えるようにMicroSoft社が開発した言語。</br>
+  JavaScriptは動的型付け言語であるため、意図しない型を許容しないように静的型付けを行えるようにMicroSoft社が開発した言語。
   デプロイ時などにJavaScriptへビルドしなければならない。</br>
   ![](./_ico/ts-logo-128.svg)</br>
   [公式サイト](https://www.typescriptlang.org/ "TypeScript")&nbsp;|&nbsp;[ロゴリンク](https://www.typescriptlang.org/branding/ "TypeScript")&nbsp;|&nbsp;[GitHub](https://github.com/microsoft/TypeScript/#readme "GitHub")
 
 * ### **Clasp**</br>
 
-  Googleが提供するGAS(Google App Script)をローカル環境で開発可能なようにするCLIツール。</br>
+  Googleが提供するGAS(Google App Script)をローカル環境で開発可能なようにするCLIツール。
   GASをJavaScriptで開発できるようにする。</br>
   <img src="./_ico/Google_Apps_Script.svg" width="15%"/></br>
   [公式サイト](https://developers.google.com/apps-script/guides/clasp?hl=ja "Google")&nbsp;|&nbsp;[ロゴリンク](https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_Apps_Script.svg "Wiki")&nbsp;|&nbsp;[GitHub](https://github.com/google/clasp "GitHub")
 
 * ### **Visual Studio Code ( VSCode )**</br>
 
-  MicroSoft開発の汎用テキストエディタ。「vim」や「Emacs」などの古参エディタと比肩するツール。</br>
+  MicroSoft開発の汎用テキストエディタ。「vim」や「Emacs」などの古参エディタと比肩する強力なツール。
   拡張機能を追加することで、デバッグや入力補完など様々な仕事を行ってくれる。</br>
   <img src="./_ico/Visual_Studio_Code_1.35_icon.svg" width="14%"/></br>
   [公式サイト](https://code.visualstudio.com/ "Visual Studio Code")&nbsp;|&nbsp;[ロゴリンク](https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg "Wiki")&nbsp;|&nbsp;[GitHub](https://github.com/microsoft/vscode "GitHub")
