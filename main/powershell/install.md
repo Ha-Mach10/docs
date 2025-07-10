@@ -42,6 +42,19 @@ New-TemporaryFile
 $env:TEMP /// ここに一時ファイルのパスが格納されている。
 ```
 
+### 進捗表示の抑制
+
+PowerShellを使用して時間のかかる処理などをしていると、緑帯表示の上に作業進捗を示すインジケーターが表示されるが、バッチ処理などではこれらの表示が邪魔になることがある。
+そこで進捗表示を抑制するために**自動変数**である **$ProgressPreference** に設定を行うことで、表示が抑制される。
+
+```powershell
+$ProgressPreference = 'SilentContinue'
+```
+
+**Preference**とある通り、基本的にこの設定はユーザーのニーズに合わせて設定されることを目的とされている。
+MicrosoftのページにProgressPreference以外のPreference変数が紹介されているので、詳しく知りたい方はそちらを参照すると良いだろう。
+Microsoft Learn : [about_Preference_Variables](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_preference_variables?view=powershell-7.5)
+
 ---
 
 ## 実際にインストールしてみる
