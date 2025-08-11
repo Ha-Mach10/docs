@@ -1,3 +1,5 @@
+@import "../less/primer.less"
+
 # 実環境構成
 
 ---
@@ -135,3 +137,33 @@ JsonやCSV,データベースファイルの置き場所
 下層の構成は下記の通り
 
 * **do**：
+
+
+---
+
+```plantuml
+@startuml
+scale 1.6
+salt
+{
+    {T
+        +<&hard-drive>DriveA | 💻作業用ドライブ
+        ++<&folder>document
+        +++<&folder>papers
+        +++<&folder>contracts
+        +++<&folder>references
+        ++++<&folder>art
+        ++++<&folder>3dmodels
+        +++<&folder>catalogs
+        +++<&folder>manuals
+        +++<&folder>receipts
+        +++<&folder>development
+        ++++<&folder>docs
+        ++++<&folder>code
+        +++<&folder>trpg
+        +++<&folder>misc
+        ++++<&file>.config.json
+    }
+}
+@enduml
+```
