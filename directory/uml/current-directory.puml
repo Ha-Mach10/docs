@@ -1,0 +1,176 @@
+@startuml currenrtt-directory.pu
+
+!include <material/common>
+!include <material/disk>
+
+scale 1.6
+salt
+{
+    {T
+    + <&hard-drive> C:(System)
+
+    + <&hard-drive> D:(CD/DVD)
+
+    + <&hard-drive> E:(1.MOV_Edit)
+	++ <&folder> 00_other_videos
+	+++ <&folder> e
+	+++ <&folder> g
+	+++ <&folder> twitter
+	+++ <&folder> youtube
+	++ <&folder> 10_movie_file
+	+++ <&folder> 1.MOV_(素材)
+	++ <&folder> 20_sound
+	+++ <&folder> ASMR
+	+++ <&folder> アンゴラたちの踊り
+	+++ <&folder> ボイロ　EXボイス
+	+++ <&folder> 桜乃そら_ボイス
+	++ <&folder> 30_soft
+	+++ <&folder> (動画エンコーダ)ffmpeg-2021-05-05-git-7c451b609c-full_build
+	+++ <&folder> AviUtl
+	+++ <&folder> Bouyomityan
+	+++ <&folder> VOICEROID2.lnk
+	+++ <&folder> YukkuriMovieMaker_v3.4.8.1
+	+++ <&folder> ボイスロイド
+	++ <&folder> 40_2D
+	++ <&folder> 50_OBS
+	++ <&folder> img_
+	++ <&folder> Program Files
+	++ <&folder> source_
+	++ <&folder> tmp
+	++ <&folder> WindowsApps
+	++ <&folder> WpSystem
+	++ <&folder> WUDownloadCache
+
+    + <&hard-drive> F:(2.CREATE)
+	++ <&folder> 10_data
+	+++ <&folder> 10_clip
+	+++ <&folder> 20_psd
+	+++ <&folder> 30_live2d
+	+++ <&folder> 40_3d
+	+++ <&folder> 90_dl-file
+	+++ <&folder> _tmp
+	++ <&folder> 11_reference
+	+++ <&folder> charcters_[manga-anime]
+	+++ <&folder> illustrators
+	+++ <&folder> materials
+	+++ <&folder> poses
+	+++ <&folder> RITO2DT-20240428T122950Z-001
+	+++ <&folder> structure_[body]
+	+++ <&folder> _design
+	++ <&folder> 2E709EF9-7475-45ee-8CCC-0C6212635299
+	++ <&folder> 30_picture
+	++ <&folder> 80_books
+	+++ <&folder> book
+	+++ <&folder> doc
+	+++ <&folder> img
+	+++ <&folder> kindle_books
+	+++ <&folder> tmp
+	++ <&folder> _dona-dona_char-file
+
+    + <&hard-drive> G:(3.Work)
+	++ <&folder> 0_Program
+	++ <&folder> 10_Project
+	+++ <&folder> 10_mecanic
+	+++ <&folder> 20_electronic
+	+++ <&folder> 30_Sounds
+	+++ <&folder> 40_my-pc
+	++ <&folder> 11_Document
+	+++ <&folder> 10_class_diagram
+	+++ <&folder> 202303300835_ALL
+	+++ <&folder> 20_table
+	+++ <&folder> 30_ストアドプロシージャ,ファンクション
+	+++ <&folder> 40_diagrams
+	+++ <&folder> 50_git-doc
+	+++ <&folder> 50_git_doc_test_00003
+	+++ <&folder> 60_Server_Struct
+	+++ <&folder> 90_AI_Generated
+	+++ <&folder> PATLITE_DATATABLES
+	+++ <&folder> PATLITE_MYSQL_CSV
+	+++ <&folder> scan
+	+++ <&folder> Test
+	+++ <&folder> 作りかけの書類など_20230326
+	++ <&folder> 20_Program
+	+++ <&folder> 00_projects
+	+++ <&folder> 21_CS
+	+++ <&folder> 40_Java
+	+++ <&folder> bat
+	+++ <&folder> c
+	+++ <&folder> carbon-language
+	+++ <&folder> cpp
+	+++ <&folder> cs
+	+++ <&folder> gas
+	+++ <&folder> go
+	+++ <&folder> html
+	+++ <&folder> img
+	+++ <&folder> ino
+	+++ <&folder> java
+	+++ <&folder> js
+	+++ <&folder> lisp
+	+++ <&folder> nc
+	+++ <&folder> php
+	+++ <&folder> ps1
+	+++ <&folder> python
+	+++ <&folder> ruby
+	+++ <&folder> rust
+	+++ <&folder> vb
+	+++ <&folder> vba
+	+++ <&folder> vbs
+	+++ <&folder> _data
+	+++ <&folder> _doc
+	+++ <&folder> _ico
+	+++ <&folder> _oth
+	++ <&folder> 21_DB
+	+++ <&folder> dolt
+	+++ <&folder> _dump
+	+++ <&folder> _query
+	++ <&folder> 22_Game
+	++ <&folder> 30_Softwear
+	+++ <&folder> 00_自作ツール
+	+++ <&folder> 10_ソフトウェア
+	+++ <&folder> 20_CommandLineTools
+	+++ <&folder> 30_oddWare
+	+++ <&folder> _命名基準
+	+++ <&folder> _管理
+	++ <&folder> 40_Share
+	+++ <&folder> bitFlyer(仮想通貨)
+	+++ <&folder> pass library
+	+++ <&folder> 壁紙
+	++ <&folder> 50_Home
+	+++ <&folder> 202109~_money
+	+++ <&folder> 202110~_money
+	+++ <&folder> 給与明細
+	+++ <&folder> 重要書類_20230326
+	++ <&folder> 60_exsam
+	+++ <&folder> 機械設計技術者　過去問
+	+++ <&folder> 機械設計技術者試験　問題集
+	++ <&folder> 70_PDF-Lib
+	+++ <&folder> 取扱説明書
+	+++ <&folder> 大森さん用PC計算
+	+++ <&folder> 領収書
+	++ <&folder> BIO_VIL_demo-ver.
+	++ <&folder> Captures
+	++ <&folder> folder
+	++ <&folder> mincraft_works
+	++ <&folder> tmp
+
+    + <&hard-drive> H:(Game_Project) | Empty ✨
+
+    + <&hard-drive> I:(ボリューム) | Empty ✨
+
+    + <&hard-drive> J:(GAME)
+    ++ <&folder> _Other
+    ++ <&folder> 00_make_game
+    ++ <&folder> 10_DL_Game
+	+++ <&folder> 230903_援助妊娠學園
+	+++ <&folder> new_tmp
+	+++ <&folder> _7z
+	+++ <&folder> _favorit
+	+++ <&folder> _tri
+    ++ <&folder> 30_Booth_Game
+    ++ <&folder> DMMGame
+    ++ <&folder> Records
+    ++ <&folder> Social_Game
+    ++ <&folder> SteamLibrary
+    }
+}
+@enduml
