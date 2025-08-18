@@ -140,6 +140,8 @@ Z(=26)を超える際、桁上がりが発生するため、2桁目をAにする
     \sum_{n=0}^\infty 26^n
 \]
 
+[シグマ記号を用いた計算 リンク](https://www.cc.aoyama.ac.jp/~t41338/math/mathlecture/basics/sigma.html)
+
 ---
 
 \[
