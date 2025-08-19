@@ -216,14 +216,15 @@ private static decimal A1ColumnStringToInt(string value)
 
 </details>
 
-\[
-    \mathbb{K} = \{X_1, X_2,X_3, \ldots, X_n\}となるような集合\mathbb{K}が存在した場合、 \\
-    \\
-    自然数の集合を\mathbb {N}として\mathbb{K} = \{(X, n) \mid 1 \leq X \leq 26, 1 \leq n \leq \mathbb{N} \} が成り立つとき \\
-     \\
-\]
+## 奥付
 
-注釈
+---
+
+### 参考文献
+
+- [A1表記と26進数](https://qiita.com/ttk1/items/83ed469cf62aebcc67ba)
+
+## 注釈
 
 [^1]:ここでいう**ゼロ**とは概念そのものを指す。
 **位取り表記で空欄を示すための記号**としてのゼロを示す。
