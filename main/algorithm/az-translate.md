@@ -47,102 +47,174 @@
 
 (例1)　AAA列
 \[
-    x :="AAA" \\
-    f(x) = (1\times26^2)+(1\times26^1)+(1\times26^0)=703
+    x:='AAA'\\
+    f(x)=703\\
 \]
 
-(例2)　GXFASSE列
+(例2)　GXFASSEについて
 \[
-    x := "GXFASSE" \\
-    f(x) = (7\times26^6)+(24\times26^5)+(6\times26^4)+(1\times26^3)+(19\times26^2)+(19\times26^1)+(5\times26^0) \\
-    f(x) = 2450336231
+    x:='GXFASSE'\\
+    f(x)=2450336231\\
 \]
 
-
-## 🛣️ 道のり
-
----
-
-```mermaid
-graph TB
-    A[抽象化]　--> B[計算方法の確立] --> C[アルゴリズムの作成]
-```
-
-## 🎨 抽象化
+## 10進数,26進数,A1表記の比較
 
 ---
 
-ある配列`Array`を考える。
+- 0-9を使った10進数
+- A-Zの記号を使った26進数
+- A1表記の列番号
 
-```mermaid
-flowchart LR
-    subgraph Array
-    A
-    D
-    C
-    X
-    ...
-    x
-    end
-```
+この三つについて比較をしてみる
 
-このとき、`Array`に入るのはA～Zまでの任意のアルファベットである（重複可）
-簡単な例として、配列が**A,B**で構成されていたと仮定する。
-その場合下記のような配列になる。
+|10進数|26進数|A1表記|
+|:-:|:-:|:-:|
+|000|AAAA|----|
+|001|AAAB|---A|
+|002|AAAC|---B|
+|003|AAAD|---C|
+|...|... |... |
+|025|AAAZ|---Y|
+|026|AABA|---Z|
+|027|AABB|--AA|
+|028|AABC|--AB|
+|...|... |... |
 
-```mermaid
-flowchart LR
-    subgraph Array
-    A
-    B
-    end
-```
+一般的なn進数では**ゼロ**[^1]に対応する記号が存在しており、10進数では`0`、26進数では`A`がその役割を担う。
+対して、A1表記にはゼロに対応する記号がついていない。
+上記表では代わりに`-`を使用しているが、繰り上がりの際に`-`の扱いに困ってしまう。
+（※表計算ソフトでは`A`から始まっており、`A`の列インデックスの値が1であるため。ゼロにあたる記号が存在しないことによる）
+
+
+## 計算式
+
+---
+
+上記や先の例題から、各桁のアルファベットの番数と26の桁ごとの指数乗より下記のように一般化可能である。
+まず任意のアルファベット1文字を入力した際に数値を返す関数 $ f(d) $ を下記に定義する。
+\[
+    \begin{equation*}
+        f(d)=
+        \begin{cases}
+            0,\hspace{5mm}d='A'\\
+            1,\hspace{5mm}d='B'\\
+            2,\hspace{5mm}d='C'\\
+            \vdots\\
+            25,\hspace{5mm}d='Z'
+        \end{cases}
+    \end{equation*}
+\]
+
+すると任意長のアルファベットが渡されたときの値は下記のように定義される。
+
+\[
+    \sum_{i=0}^{D_{max}} f(D[i])\cdot26^i
+\]
+
+ただし、$ D $ は26進数の数を示し、 $ D[i] $ は右からi番目の桁の文字を表している。
+また $ D_{max} $ は $ D $ の最大桁の番号を表すものとする。
+
+またA1表記にて計算を行う場合、上記式ではAのとき0乗算が行われるため、関数 $ f $ の値へ1を加算し、下記のように再定義する。
+
+\[
+    \sum_{i=0}^{D_{max}} \Big[f(D[i])+1\Big]\cdot26^i
+\]
+
+\[
+    \begin{align*}
+    \sum_{i=0}^{D_{max}}\Big[f(D[i])+1\Big]\cdot26^i=\Bigl(f(d_0)+1\Bigl)\cdot26^0+\Bigl(f(d_1)+1\Bigl)\cdot26^1+\dots+\Bigl(f(d_i)+1\Big)\cdot26^i
+    \end{align*}
+\]
+
+## アルゴリズムの実装
+
+---
+
+**TypeScript** (※代表として表示)
 
 ```typescript
-const array: string = "AB";
+const a1ColumnStringToNumber = (value: string): number =>
+  value
+  .toUpperCase()
+  .split("")
+  .filter(x => /^[A-z]+$/).test(x))
+  .reverse()
+  .map((c, index) => (c.charCodeAt(0) - 64) * (26 ** index))
+  .reduce((tmpSum, x) => tmpSum + x, 0);
 ```
 
-計算を行ってみる
-まずは下記のように定義を行う。
-1～26までの自然数の集合を $ \mathbb{K} $とする。
-\[
-    \mathbb{K} = \{1, 2, 3, \ldots, 26\}
-\]
+<details><summary>JavaScript</summary>
 
-またそれぞれの値はアルファベットのA-Zの全射である。
+```javascript
+function a1ColumnStringToNumber(value) {
+    // regex pattern.
+    const VALID_PATTERN = /^[A-Za-z]+$/;
 
-\[
-    A = 1\\
-    B = 2\\
-    C = 3\\
-    \vdots\\
-    Z = 26\\
-\]
+    // Error handling.
+    // ------------------------------------------
+    // 1. type guard.
+    if (typeof value !== 'string') {
+        throw new TypeError("The provided value must be a string.");
+    }
+    // 2. pattern match.
+    if (!VALID_PATTERN.test(value)) {
+        throw new Error("The specified value must contain only alphabetical characters. For example, 'A' or 'AB'.");
+    }
 
-Z(=26)を超える際、桁上がりが発生するため、2桁目をAにする。
+    // split & arrange & calcurate
+    return value
+    .toUpperCase()
+    .split("")
+    .reverse()
+    .map((c, index) => (c.charCodeAt(0) - 64) * (26 ** index))
+    .reduce((tmpSum, x) => tmpSum + x, 0);
+}
+```
 
-\[
-    Z + A = AA \rightarrow 26 + 1 = 27\\
-    AA = 27
-\]
+</details>
 
-ここで2の位へ上がるには27必要であることが分かった。
-そのため、**AB**を計算するためには
+<details><summary>C#</summary>
 
-\[
-    Z + B = AB \rightarrow  26 + 2 = 28 \\
-    AB = 28 \\
-\]
+```Csharp
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-上記や先の例題を見てわかったこととして、下記のように一般化可能である。
+// ... other codes.
 
-\[
-    \sum_{n=0}^\infty 26^n
-\]
+private static decimal A1ColumnStringToInt(string value)
+{
+    if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, "^[A-Za-z]+$"))
+    {
+        throw new ArgumentException("The specified value must be a non-empty string and contain only alphabetical characters. (e.g., 'A', 'AZ')", nameof(value));
+    }
 
-[シグマ記号を用いた計算 リンク](https://www.cc.aoyama.ac.jp/~t41338/math/mathlecture/basics/sigma.html)
+    return value
+    .ToUpper()
+    .Reverse()
+    .Select((c, index) =>
+    {
+        // A-Zの値の計算(A=1とした場合)
+        decimal decimalChar = Convert.ToDecimal(c - 64);
+        // 26 ^ indexの計算.
+        decimal powerdNumber = Convert.ToDecimal(Math.Pow(26, index));
 
----
+        return decimalChar * powerdNumber;
+    })
+    .Sum();
+}
+
+// ... other codes.
+```
+
+</details>
+
+<details><summary>VBA</summary>
+
+```VBA
+```
+
+</details>
 
 \[
     \mathbb{K} = \{X_1, X_2,X_3, \ldots, X_n\}となるような集合\mathbb{K}が存在した場合、 \\
@@ -151,7 +223,7 @@ Z(=26)を超える際、桁上がりが発生するため、2桁目をAにする
      \\
 \]
 
-\[
-    
-\]
+注釈
 
+[^1]:ここでいう**ゼロ**とは概念そのものを指す。
+**位取り表記で空欄を示すための記号**としてのゼロを示す。
