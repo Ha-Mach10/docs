@@ -136,7 +136,7 @@ const a1ColumnStringToNumber = (value: string): number =>
   value
   .toUpperCase()
   .split("")
-  .filter(x => /^[A-z]+$/).test(x))
+  .filter(x => /^[A-Za-z]+$/.test(x))
   .reverse()
   .map((c, index) => (c.charCodeAt(0) - 64) * (26 ** index))
   .reduce((tmpSum, x) => tmpSum + x, 0);
@@ -210,7 +210,12 @@ private static decimal A1ColumnStringToInt(string value)
 
 <details><summary>VBA</summary>
 
-```VBA
+```vb
+Public Function A1ColumnStringToInteger(ByRef Value As String): Integer
+
+    Dim chars as String[]
+
+End Function
 ```
 
 </details>
